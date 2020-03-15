@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `heroku_e40966382f520ff`.`votacao` (
   `voto` TINYINT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_id_Associado_idx` (`associado_id` ASC),
-  UNIQUE INDEX `unique_id_Pauta_id_Associado` (`pauta_id` ASC, `associado_id` ASC) VISIBLE,
+  UNIQUE INDEX `unique_id_Pauta_id_Associado` (`pauta_id` ASC, `associado_id` ASC),
   CONSTRAINT `fk_id_Pauta`
     FOREIGN KEY (`pauta_id`)
     REFERENCES `heroku_e40966382f520ff`.`pauta` (`id`)
