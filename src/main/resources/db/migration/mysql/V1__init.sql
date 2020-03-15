@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `heroku_e40966382f520ff`.`votacao` (
   `associado_id` INT NOT NULL,
   `voto` TINYINT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_id_Associado_idx` (`associado_id` ASC) VISIBLE,
+  INDEX `fk_id_Associado_idx` (`associado_id` ASC),
   UNIQUE INDEX `unique_id_Pauta_id_Associado` (`pauta_id` ASC, `associado_id` ASC) VISIBLE,
   CONSTRAINT `fk_id_Pauta`
     FOREIGN KEY (`pauta_id`)
