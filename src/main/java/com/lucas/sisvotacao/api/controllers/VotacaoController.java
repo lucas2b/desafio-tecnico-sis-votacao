@@ -188,6 +188,10 @@ public class VotacaoController {
 				log.info("CPF de número {} do Associado com ID {} é inexistente. Votação negada.", associado.getCpf(), associado.getId());
 				result.addError(new ObjectError("votacao",  "CPF de número " + associado.getCpf() + " do Associado com ID " + associado.getId() +" é inexistente. Votação Negada.") );
 				return;
+			}catch (Exception e) {
+				log.info("Ocorreu uma exeção ao acessar a API de verificação de CPF");
+				result.addError(new ObjectError("votaca", "Ocorreu uma exceção ao tentar acessar o serviço de verificação de CPF"));
+				return;
 			}
 		}
 		
