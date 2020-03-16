@@ -134,7 +134,7 @@ public class VotacaoController {
 				result.addError(new ObjectError("votacao", "A Pauta não foi aberta. Proibido Votação"));
 				return;
 
-			} else { //Sessão já foi iniciada
+			} else { //Sessão já foi iniciada, verificando se o tempo já se encerrou
 				
 				
 				log.info("Data Abertura Pauta: {}", pauta.getInicio());
@@ -159,9 +159,16 @@ public class VotacaoController {
 			
 		}else {
 			
-			//Verifica CPF do Associado
+			//Verificando se o associado já votou na Pauta
 			
-			try {
+			int numVotosDeAssociado = votacaoService.verificarNumeroDeVezesAssociadoVotouEmPauta(votacaoDto.getPautaId(), votacaoDto.getAssociadoId());
+			if(numVotosDeAssociado > 0) {
+				result.addError(new ObjectError("votacao", "Associado já votou para esta pauta. Operação negada."));
+				return;
+			}
+			
+			
+			try { //Verificando o CPF do Associado
 				
 				RestTemplate restTemplate = new RestTemplate();
 				ValidaCpfAssociadoDto validaCpfAssociadoDto = restTemplate.getForObject(URL_CHECK_CPF + associado.getCpf(), ValidaCpfAssociadoDto.class);
@@ -182,19 +189,6 @@ public class VotacaoController {
 				result.addError(new ObjectError("votacao",  "CPF de número " + associado.getCpf() + " do Associado com ID " + associado.getId() +" é inexistente. Votação Negada.") );
 				return;
 			}
-		}
-		
-		
-		//------------------------ VALIDAÇÃO DE NÚMERO DE VOTOS DO ASSOCIADO EM DETERMINADA PAUTA ------------------------------
-		
-		/*
-			Caso chegou nesse trecho, então:  a Pauta existe, A votação foi aberta, o Tempo para votar ainda não acabou, 
-			o Assocido existe, o CPF do Associado é válido e o status do seu cpf é ABLE_TO_VOTE. 
-		 */
-		
-		int numVotosDeAssociado = votacaoService.verificarNumeroDeVezesAssociadoVotouEmPauta(votacaoDto.getPautaId(), votacaoDto.getAssociadoId());
-		if(numVotosDeAssociado > 0) {
-			result.addError(new ObjectError("votacao", "Associado já votou para esta pauta. Operação negada."));
 		}
 		
 
