@@ -1,4 +1,4 @@
-# desafio-tecnico-sis-votacao
+# Desafio Técnico Sis Votação
 Resolução de um desafio técnico que implementa um sistema de votação de Associados.
 
 A solução adotada para este desafio foi desenvolvida em Java 8, utilizado o
