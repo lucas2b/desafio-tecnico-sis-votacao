@@ -23,8 +23,8 @@ Endpoints da API: (payloads de exemplo no diretório "payloads" na raiz da aplic
    retorna seu ID.
       
  3. Listar Pautas, 
-    Tipo de Chamada: GET, 
-    URL: http://localhost:8080/api/pauta/listarPautas , 
+    Tipo de Chamada: GET <br/>
+    URL: http://localhost:8080/api/pauta/listarPautas <br/>
     Descrição: Retorna todas Pautas cadastradas com suas informações.
    
 4. Abertura de Sessão de Pauta<br/>
@@ -41,7 +41,7 @@ Endpoints da API: (payloads de exemplo no diretório "payloads" na raiz da aplic
       1. A Pauta esteja aberta para votação.
       2. Caso o Associado ainda não tenha votado na Pauta.
       3. Caso o CPF do Associado seja válido.
-      4. Caso a API de Testes de CPF fornecida retorne “ABLE_TO_VOTE”.
+      4. Caso a API de Testes de CPF fornecida retorne “ABLE_TO_VOTE”.<br/>
    Todas as condições acima devem ser satisfeitas para o voto ser computado e são testadas nesta ordem.<br/>
    O voto (sim ou não) do associado é descrito no payload pela propriedade “voto” por um valor booleano<br/>
    “true” ou “false”,indicando se o associado vota “Sim” ou “Não“ como resposta desta Pauta.
